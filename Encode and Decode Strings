@@ -1,0 +1,51 @@
+'''
+ex1:
+Input: ["lint","code","love","you"]
+Output: ["lint","code","love","you"]
+Explanation:
+One possible encode method is: "lint:;code:;love:;you"
+
+ex2:
+Input: ["we", "say", ":", "yes"]
+Output: ["we", "say", ":", "yes"]
+Explanation:
+One possible encode method is: "we:;say:;:::;yes"
+'''
+
+class Solution:
+    """
+    @param: strs: a list of strings
+    @return: encodes a list of strings to a single string.
+    """
+    def encode(self, strs):
+        # write your code here
+        res = ""
+        for s in strs:
+            res += str(len(s))+"#"+s
+        return res
+
+    """
+    @param: str: A string
+    @return: dcodes a single string to a list of strings
+    """
+    def decode(self, _str):
+        # write your code here
+        p = 0
+        res = []
+        while p < len(_str):
+            str_length = ""
+            while _str[p] != "#":
+                str_length += _str[p]
+                p+=1
+            res.append(_str[p+1:p+1+int(str_length)])
+            p = p+1+int(str_length)
+            print(p)
+            print("-------")
+        return res
+
+
+k = Solution()
+# res1 = k.encode(["we", "say", ":", "yes"])
+# print(res1)
+res2 = k.decode("10#weEEE#EEEE3#say1#:3#yes")
+print(res2)
